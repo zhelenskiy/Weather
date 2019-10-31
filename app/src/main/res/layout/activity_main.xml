@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/background"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="@string/background"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/light_background" />
+
+    <ImageView
+        android:id="@+id/mainImage"
+
+        android:layout_marginTop="40dp"
+        android:contentDescription="@string/cloudless"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/sun"
+        style="@style/mainImage" />
+
+    <TextView
+        android:id="@+id/mainTemperature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:isScrollContainer="true"
+        android:scrollbars="vertical"
+        android:text="@string/_23"
+        android:textSize="48sp"
+        app:layout_constraintEnd_toEndOf="@id/mainImage"
+        app:layout_constraintStart_toStartOf="@id/mainImage"
+        app:layout_constraintTop_toBottomOf="@id/mainImage" />
+
+    <HorizontalScrollView
+        android:id="@+id/day"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mainTemperature"
+        style="@style/verticalScrollView">
+
+        <LinearLayout style="@style/backgroundLayout">
+            <include android:id="@+id/morningLayout" layout="@layout/data_for_a_unit" />
+            <include android:id="@+id/afternoonLayout" layout="@layout/data_for_a_unit" />
+            <include android:id="@+id/eveningLayout" layout="@layout/data_for_a_unit" />
+            <include android:id="@+id/nightLayout" layout="@layout/data_for_a_unit" />
+        </LinearLayout>
+    </HorizontalScrollView>
+    <HorizontalScrollView
+        android:id="@+id/week"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/day"
+        style="@style/verticalScrollView">
+
+        <LinearLayout style="@style/backgroundLayout">
+            <include android:id="@+id/mondayLayout" layout="@layout/data_for_a_unit" />
+            <include android:id="@+id/tuesdayLayout" layout="@layout/data_for_a_unit" />
+            <include android:id="@+id/wednesdayLayout" layout="@layout/data_for_a_unit" />
+            <include android:id="@+id/thursdayLayout" layout="@layout/data_for_a_unit" />
+            <include android:id="@+id/fridayLayout" layout="@layout/data_for_a_unit" />
+
+            <include android:id="@+id/saturdayLayout" layout="@layout/data_for_a_unit" />
+            <include android:id="@+id/sundayLayout" layout="@layout/data_for_a_unit" />
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <Switch
+        android:id="@+id/darkTheme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_weight="1"
+        android:text="@string/use_dark_theme"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@id/week"
+        app:layout_constraintTop_toBottomOf="@id/week" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

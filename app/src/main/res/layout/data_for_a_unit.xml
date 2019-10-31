@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/morningLayout"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:layout_marginEnd="20dp"
+    tools:showIn="@layout/activity_main">
+
+    <TextView
+        android:id="@+id/dayTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/image"
+        android:contentDescription="@string/cloudless"
+        app:layout_constraintStart_toStartOf="@+id/dayTime"
+        app:layout_constraintTop_toBottomOf="@+id/dayTime"
+        app:srcCompat="@drawable/sun"
+        style="@style/dayTimeImage" />
+
+    <TextView
+        android:id="@+id/temperature"
+        style="@style/dayTimeTemperature"
+        app:layout_constraintBottom_toBottomOf="@+id/image"
+        app:layout_constraintStart_toEndOf="@+id/image"
+        app:layout_constraintTop_toTopOf="@+id/image" />
+</androidx.constraintlayout.widget.ConstraintLayout>
