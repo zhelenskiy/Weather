@@ -129,7 +129,7 @@ class MainActivity : AppCompatActivity() {
             })
         }
         applyCache()
-        daysOfWeek[0].performClick()
+        daysOfWeek[WeatherApplication.app.currentDay].performClick()
     }
 
     private fun applyCache() {
@@ -140,9 +140,9 @@ class MainActivity : AppCompatActivity() {
             val imageView = layout.findViewById(R.id.image) as ImageView
             imageView.contentDescription = data.weather.main
             (layout.findViewById(R.id.time) as TextView).text =
-                SimpleDateFormat("dd.MM hh:mm", Locale.US)
+                SimpleDateFormat("dd.MM HH:mm", Locale.US)
                     .format(
-                    SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.US)
+                    SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US)
                         .parse(data.date) ?: Date()
                 )
             (layout.findViewById(R.id.temp) as TextView).text = convertTemperature(data)
