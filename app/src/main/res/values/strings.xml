@@ -8,4 +8,5 @@
     <string name="pressure">Pressure</string>
     <string name="wind">Wind speed</string>
     <string name="clouds">Clouds</string>
+    <string name="loadingMessage">Loading…</string>
 </resources>

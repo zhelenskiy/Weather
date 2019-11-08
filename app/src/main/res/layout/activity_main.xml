@@ -20,13 +20,13 @@
 
     <ImageView
         android:id="@+id/mainImage"
-
+        style="@style/mainImage"
         android:layout_marginTop="40dp"
         android:contentDescription="@string/cloudless"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        style="@style/mainImage" />
+        app:srcCompat="@drawable/loading" />
 
     <TextView
         android:id="@+id/mainTemperature"
@@ -34,6 +34,7 @@
         android:layout_height="wrap_content"
         android:isScrollContainer="true"
         android:scrollbars="vertical"
+        android:text="@string/loadingMessage"
         android:textSize="48sp"
         app:layout_constraintEnd_toEndOf="@id/mainImage"
         app:layout_constraintStart_toStartOf="@id/mainImage"
@@ -41,66 +42,115 @@
 
     <HorizontalScrollView
         android:id="@+id/day"
+        style="@style/verticalScrollView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/mainTemperature"
-        style="@style/verticalScrollView">
+        app:layout_constraintTop_toBottomOf="@id/mainTemperature">
 
-        <LinearLayout
-            style="@style/backgroundLayout">
+        <LinearLayout style="@style/backgroundLayout">
 
             <include
                 android:id="@+id/humidity"
                 layout="@layout/data_for_a_sub_unit" />
-            <include layout="@layout/divider"/>
+
+            <include layout="@layout/divider" />
 
             <include
                 android:id="@+id/pressure"
                 layout="@layout/data_for_a_sub_unit" />
-            <include layout="@layout/divider"/>
+
+            <include layout="@layout/divider" />
 
             <include
                 android:id="@+id/wind"
                 layout="@layout/data_for_a_sub_unit" />
-            <include layout="@layout/divider"/>
+
+            <include layout="@layout/divider" />
 
             <include
                 android:id="@+id/clouds"
                 layout="@layout/data_for_a_sub_unit" />
         </LinearLayout>
     </HorizontalScrollView>
+
     <HorizontalScrollView
         android:id="@+id/week"
+        style="@style/verticalScrollView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/day"
-        style="@style/verticalScrollView">
+        app:layout_constraintTop_toBottomOf="@id/day">
 
         <LinearLayout style="@style/backgroundLayout">
 
-            <include android:id="@+id/dayLayout1" layout="@layout/data_for_a_unit" />
-            <include layout="@layout/divider"/>
-            <include android:id="@+id/dayLayout2" layout="@layout/data_for_a_unit" />
-            <include layout="@layout/divider"/>
-            <include android:id="@+id/dayLayout3" layout="@layout/data_for_a_unit" />
-            <include layout="@layout/divider"/>
-            <include android:id="@+id/dayLayout4" layout="@layout/data_for_a_unit" />
-            <include layout="@layout/divider"/>
-            <include android:id="@+id/dayLayout5" layout="@layout/data_for_a_unit" />
-            <include layout="@layout/divider"/>
-            <include android:id="@+id/dayLayout6" layout="@layout/data_for_a_unit" />
-            <include layout="@layout/divider"/>
-            <include android:id="@+id/dayLayout7" layout="@layout/data_for_a_unit" />
-            <include layout="@layout/divider"/>
-            <include android:id="@+id/dayLayout8" layout="@layout/data_for_a_unit" />
-            <include layout="@layout/divider"/>
-            <include android:id="@+id/dayLayout9" layout="@layout/data_for_a_unit" />
-            <include layout="@layout/divider"/>
-            <include android:id="@+id/dayLayout10" layout="@layout/data_for_a_unit" />
-            <include layout="@layout/divider"/>
-            <include android:id="@+id/dayLayout11" layout="@layout/data_for_a_unit" />
-            <include layout="@layout/divider"/>
-            <include android:id="@+id/dayLayout12" layout="@layout/data_for_a_unit" />
+            <include
+                android:id="@+id/dayLayout1"
+                layout="@layout/data_for_a_unit" />
+
+            <include layout="@layout/divider" />
+
+            <include
+                android:id="@+id/dayLayout2"
+                layout="@layout/data_for_a_unit" />
+
+            <include layout="@layout/divider" />
+
+            <include
+                android:id="@+id/dayLayout3"
+                layout="@layout/data_for_a_unit" />
+
+            <include layout="@layout/divider" />
+
+            <include
+                android:id="@+id/dayLayout4"
+                layout="@layout/data_for_a_unit" />
+
+            <include layout="@layout/divider" />
+
+            <include
+                android:id="@+id/dayLayout5"
+                layout="@layout/data_for_a_unit" />
+
+            <include layout="@layout/divider" />
+
+            <include
+                android:id="@+id/dayLayout6"
+                layout="@layout/data_for_a_unit" />
+
+            <include layout="@layout/divider" />
+
+            <include
+                android:id="@+id/dayLayout7"
+                layout="@layout/data_for_a_unit" />
+
+            <include layout="@layout/divider" />
+
+            <include
+                android:id="@+id/dayLayout8"
+                layout="@layout/data_for_a_unit" />
+
+            <include layout="@layout/divider" />
+
+            <include
+                android:id="@+id/dayLayout9"
+                layout="@layout/data_for_a_unit" />
+
+            <include layout="@layout/divider" />
+
+            <include
+                android:id="@+id/dayLayout10"
+                layout="@layout/data_for_a_unit" />
+
+            <include layout="@layout/divider" />
+
+            <include
+                android:id="@+id/dayLayout11"
+                layout="@layout/data_for_a_unit" />
+
+            <include layout="@layout/divider" />
+
+            <include
+                android:id="@+id/dayLayout12"
+                layout="@layout/data_for_a_unit" />
 
         </LinearLayout>
     </HorizontalScrollView>
