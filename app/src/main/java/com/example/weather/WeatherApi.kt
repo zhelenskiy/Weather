@@ -14,7 +14,7 @@ interface WeatherApi {
     @GET("data/2.5/forecast")
     fun getForecast(
         @Query("q") placeName: String = "Moscow,ru",
-        @Query("appid") appId: String = "ee82869b7f40ee0f29249ff4a12cddd1",
+        @Query("appid") appId: String = BuildConfig.API_KEY,
         @Query("units") units: String = "metric"
     ): Call<WeatherList>
 }
