@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
-    android:onClick="onClick"
     tools:showIn="@layout/activity_main">
 
     <TextView
@@ -13,20 +12,15 @@
         android:layout_height="wrap_content"
         android:text=""
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/image"
-        android:contentDescription="@string/cloudless"
-        app:layout_constraintStart_toStartOf="@+id/time"
-        app:layout_constraintTop_toBottomOf="@+id/time"
-        style="@style/dayTimeImage" />
 
     <TextView
         android:id="@+id/temp"
         style="@style/dayTimeTemperature"
-        app:layout_constraintBottom_toBottomOf="@+id/image"
-        app:layout_constraintStart_toEndOf="@+id/image"
-        app:layout_constraintTop_toTopOf="@+id/image" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/time" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
