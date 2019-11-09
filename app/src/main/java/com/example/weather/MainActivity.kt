@@ -5,6 +5,7 @@ import android.graphics.Typeface
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -24,6 +25,7 @@ private const val LOG_TAG = "Weather API"
 class MainActivity : AppCompatActivity() {
     private var daysOfWeek = ArrayList<View>()
     private var indexes = HashMap<View, Int>()
+    private var isCreation = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +44,7 @@ class MainActivity : AppCompatActivity() {
             darkTheme.setTextColor(parseColor)
             mainImage.setColorFilter(parseColor)
         }
+        isCreation = false
     }
 
     private fun initializeData() {
@@ -142,9 +145,9 @@ class MainActivity : AppCompatActivity() {
             (layout.findViewById(R.id.time) as TextView).text =
                 SimpleDateFormat("dd.MM HH:mm", Locale.US)
                     .format(
-                    SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US)
-                        .parse(data.date) ?: Date()
-                )
+                        SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US)
+                            .parse(data.date) ?: Date()
+                    )
             (layout.findViewById(R.id.temp) as TextView).text = convertTemperature(data)
             imageView.setImageResource(
                 resources.getIdentifier(
@@ -167,12 +170,24 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onClick(view: View) {
-        (daysOfWeek[WeatherApplication.app.currentDay].findViewById(R.id.time) as TextView).typeface =
-            Typeface.DEFAULT
+        val old = WeatherApplication.app.currentDay
         WeatherApplication.app.currentDay = indexes[view] ?: 0
-        (daysOfWeek[WeatherApplication.app.currentDay].findViewById(R.id.time) as TextView).typeface =
-            Typeface.DEFAULT_BOLD
-        updateCur()
+        if (isCreation || old != WeatherApplication.app.currentDay) {
+            val toBeAnimated = listOf(mainImage, mainTemperature, day)
+            if (!isCreation)
+                toBeAnimated.map {
+                    it.startAnimation(AnimationUtils.loadAnimation(this, R.anim.hide))
+                }
+            (daysOfWeek[old].findViewById(R.id.time) as TextView).typeface =
+                Typeface.DEFAULT
+            (daysOfWeek[WeatherApplication.app.currentDay].findViewById(R.id.time) as TextView).typeface =
+                Typeface.DEFAULT_BOLD
+            updateCur()
+            if (!isCreation)
+                toBeAnimated.map {
+                    it.startAnimation(AnimationUtils.loadAnimation(this, R.anim.show))
+                }
+        }
     }
 
     private fun updateCur() {
