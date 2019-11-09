@@ -6,7 +6,12 @@
     <string name="base_url">https://api.openweathermap.org</string>
     <string name="humidity">Humidity</string>
     <string name="pressure">Pressure</string>
-    <string name="wind">Wind speed</string>
+    <string name="wind">Wind</string>
     <string name="clouds">Clouds</string>
     <string name="loadingMessage">Loading…</string>
+    <string name="humidity_format">%1$d%%</string>
+    <string name="pressure_format">%1$d mmHg</string>
+    <string name="wind_format">%1$.2f m/s</string>
+    <string name="clouds_format">%1$d%%</string>
+    <string name="temperatureSign">°C</string>
 </resources>

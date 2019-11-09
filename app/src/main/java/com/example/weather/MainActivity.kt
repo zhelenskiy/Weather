@@ -1,6 +1,5 @@
 package com.example.weather
 
-import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
 import android.util.Log
@@ -10,7 +9,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.data_for_a_unit.view.*
+import kotlinx.android.synthetic.main.activity_main.view.*
+import kotlinx.android.synthetic.main.data_for_a_sub_unit.view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -35,10 +35,10 @@ class MainActivity : AppCompatActivity() {
         darkTheme.setOnCheckedChangeListener { _, isDarkThemeChosen ->
             val parseColor: Int = if (isDarkThemeChosen) {
                 background.setImageResource(R.drawable.dark_background)
-                Color.parseColor("#DDDDDD")
+                getColor(R.color.darkThemeTextColor)
             } else {
                 background.setImageResource(R.drawable.light_background)
-                Color.parseColor("#000000")
+                getColor(R.color.brightThemeTextColor)
             }
             mainTemperature.setTextColor(parseColor)
             darkTheme.setTextColor(parseColor)
@@ -63,10 +63,10 @@ class MainActivity : AppCompatActivity() {
             dayLayout12
         )
         daysOfWeek.mapIndexed { index, view -> indexes[view] = index }
-        humidity.time.text = getString(R.string.humidity)
-        pressure.time.text = getString(R.string.pressure)
-        wind.time.text = getString(R.string.wind)
-        clouds.time.text = getString(R.string.clouds)
+        humidity.name.text = getString(R.string.humidity)
+        pressure.name.text = getString(R.string.pressure)
+        wind.name.text = getString(R.string.wind)
+        clouds.name.text = getString(R.string.clouds)
         /*morningLayout.dayTime.text = getString(R.string.morning)
         morningLayout.temperature.text = getString(R.string._19)
         afternoonLayout.dayTime.text = getString(R.string.afternoon)
@@ -173,7 +173,14 @@ class MainActivity : AppCompatActivity() {
         val old = WeatherApplication.app.currentDay
         WeatherApplication.app.currentDay = indexes[view] ?: 0
         if (isCreation || old != WeatherApplication.app.currentDay) {
-            val toBeAnimated = listOf(mainImage, mainTemperature, day)
+            val toBeAnimated = listOf(
+                mainImage,
+                mainTemperature,
+                day.humidity.value,
+                day.pressure.value,
+                day.wind.value,
+                day.clouds.value
+            )
             if (!isCreation)
                 toBeAnimated.map {
                     it.startAnimation(AnimationUtils.loadAnimation(this, R.anim.hide))
@@ -194,10 +201,12 @@ class MainActivity : AppCompatActivity() {
         val curIndex = WeatherApplication.app.currentDay
         val data = WeatherApplication.app.cache.getOrNull(curIndex)
         if (data != null) {
-            humidity.temp.text = "${data.humidity}%"
-            pressure.temp.text = "${0.75 * data.pressure} mmHg"
-            clouds.temp.text = "${data.clouds}%"
-            wind.temp.text = "${data.wind} m/s"
+            humidity.value.text =
+                resources.getString(R.string.humidity_format, data.humidity.toInt())
+            pressure.value.text =
+                resources.getString(R.string.pressure_format, (0.75 * data.pressure).toInt())
+            clouds.value.text = resources.getString(R.string.clouds_format, data.clouds.toInt())
+            wind.value.text = resources.getString(R.string.wind_format, data.wind)
             mainTemperature.text = convertTemperature(data)
             mainImage
                 .setImageDrawable(
@@ -211,5 +220,5 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun convertTemperature(data: MyData) =
-        (data.temperature.roundToLong()).toString() + "°C"
+        (data.temperature.roundToLong()).toString() + getString(R.string.temperatureSign)
 }

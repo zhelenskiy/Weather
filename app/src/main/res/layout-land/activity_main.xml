@@ -21,8 +21,7 @@
     <ImageView
         android:id="@+id/mainImage"
         style="@style/mainImage"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="40dp"
+        android:layout_margin="30dp"
         android:contentDescription="@string/cloudless"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -35,50 +34,58 @@
         android:isScrollContainer="true"
         android:scrollbars="vertical"
         android:text="@string/loadingMessage"
-        android:textSize="48sp"
+        android:textSize="40sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/mainImage"
         app:layout_constraintStart_toStartOf="@id/mainImage"
         app:layout_constraintTop_toBottomOf="@id/mainImage" />
 
-    <HorizontalScrollView
-        android:id="@+id/day"
-        style="@style/horizontalScrollView"
-        app:layout_constraintEnd_toEndOf="parent"
+    <Space
+        android:id="@+id/space"
+        android:layout_width="20dp"
+        android:layout_height="wrap_content"
         app:layout_constraintStart_toEndOf="@id/mainImage"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/day"
+        style="@style/backgroundLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/layout_bg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/space"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout style="@style/backgroundLayout">
+        <include
+            android:id="@+id/humidity"
+            layout="@layout/data_for_a_sub_unit" />
 
-            <include
-                android:id="@+id/humidity"
-                layout="@layout/data_for_a_sub_unit" />
+        <include layout="@layout/divider" />
 
-            <include layout="@layout/divider" />
+        <include
+            android:id="@+id/pressure"
+            layout="@layout/data_for_a_sub_unit" />
 
-            <include
-                android:id="@+id/pressure"
-                layout="@layout/data_for_a_sub_unit" />
+        <include layout="@layout/divider" />
 
-            <include layout="@layout/divider" />
+        <include
+            android:id="@+id/wind"
+            layout="@layout/data_for_a_sub_unit" />
 
-            <include
-                android:id="@+id/wind"
-                layout="@layout/data_for_a_sub_unit" />
+        <include layout="@layout/divider" />
 
-            <include layout="@layout/divider" />
-
-            <include
-                android:id="@+id/clouds"
-                layout="@layout/data_for_a_sub_unit" />
-        </LinearLayout>
-    </HorizontalScrollView>
+        <include
+            android:id="@+id/clouds"
+            layout="@layout/data_for_a_sub_unit" />
+    </LinearLayout>
 
     <HorizontalScrollView
         android:id="@+id/week"
         style="@style/horizontalScrollView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/mainImage"
+        app:layout_constraintStart_toStartOf="@id/day"
         app:layout_constraintTop_toBottomOf="@id/day">
 
         <LinearLayout style="@style/backgroundLayout">

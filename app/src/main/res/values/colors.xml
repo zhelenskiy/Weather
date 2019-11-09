@@ -4,4 +4,6 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="panelColor">#80FFFFFF</color>
+    <color name="brightThemeTextColor">#000000</color>
+    <color name="darkThemeTextColor">#DDDDDD</color>
 </resources>
