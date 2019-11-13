@@ -11,6 +11,10 @@ It has 2 themes.
 Tap time in the panel below to see more details of the weather.
 
 # Details of implementation
-* Uses cache not to request data from server more often than once in 10 minutes since previous successful request.
+* Uses cache not to request data from the server more often than once in 10 minutes since previous successful request.
 * Works in any orientation (even in half-display mode)
-* Doesn't download any pictures (they are predownloaded)
+* Does not download any pictures (they are pre-downloaded)
+
+---
+
+`RecycleView` is not used here because the max number of items is constant and small due to the server limitations.
