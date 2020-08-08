@@ -3,8 +3,7 @@ The Weather App
 
 ### Description
 
-The app shows weather in Moscow.\\
-It has 2 themes.
+The app shows weather in Moscow. It has 2 themes (light and dark).
 
 ### How to use it
 
